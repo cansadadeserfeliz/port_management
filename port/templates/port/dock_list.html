@@ -1,0 +1,40 @@
+{% extends "layout/base.html" %}
+{% load paginator_tags %}
+
+{% block title %}Docks{% endblock %}
+
+{% block content %}
+    <h1>Docks</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Dock</th>
+                <th>Status</th>
+                <th>Ship</th>
+                <th>Dangerous goods</th>
+            </tr>
+        </thead>
+            <tbody>
+            {% for dock in docks %}
+                <tr>
+                    <td>{{ dock.name }}</td>
+                {% with dock.get_current_ship as ship_in_dock %}
+                    <td>
+                    {% if ship_in_dock %}
+                        <span class="label label-danger">Occupied</span>
+                    {% else %}
+                        <span class="label label-success">Free</span>
+                    {% endif %}
+                    </td>
+                    <td>{{ ship_in_dock.ship|default:'N/A' }}</td>
+                    <td>
+                        {{ ship_in_dock.ship.has_dangerous_goods|yesno:'<span class="glyphicon glyphicon-warning-sign"></span>,N/A'|safe }}
+                    </td>
+                {% endwith %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% get_pagination 2 1 %}
+{% endblock %}

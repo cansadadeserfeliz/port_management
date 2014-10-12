@@ -20,7 +20,7 @@
             Vestibule feugiat, leo et consequat dignissim, risus purus NISL facilisis vitae gravida lacus dui Finibus mi.
         </p>
     {% if user.is_authenticated %}
-        <p><a href="" class="btn btn-warning btn-lg" role="button">List of ports &raquo;</a></p>
+        <p><a href="{% url 'port:dock_list' %}" class="btn btn-warning btn-lg" role="button">List of ports &raquo;</a></p>
     {% else %}
         <p>Please, log in to make an order</p>
     {% endif %}

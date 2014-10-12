@@ -23,8 +23,14 @@ class Ship(models.Model):
         )],
     )
 
+    @property
+    def has_dangerous_goods(self):
+        if self.containers.filter(has_dangerous_goods=True):
+            return True
+        return False
+
     def __unicode__(self):
-        return self.name
+        return u'{0}, {1}'.format(self.name, self.code)
 
     class Meta:
         ordering = ('name',)
@@ -37,6 +43,7 @@ class Container(models.Model):
 
     ship = models.ForeignKey(
         'port.Ship',
+        related_name='containers',
     )
 
     has_dangerous_goods = models.BooleanField(
@@ -60,6 +67,10 @@ class Dock(models.Model):
         settings.AUTH_USER_MODEL,
     )
 
+    @property
+    def get_current_ship(self):
+        return self.ships.filter(is_active=True).first()
+
     def __unicode__(self):
         return self.name
 
@@ -74,6 +85,7 @@ class ShipInDock(models.Model):
 
     dock = models.ForeignKey(
         'port.Dock',
+        related_name='ships',
     )
 
     is_active = models.BooleanField(

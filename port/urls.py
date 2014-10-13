@@ -4,6 +4,7 @@
 from django.conf.urls import patterns, url
 
 from port.views import DockListView
+from port.views import DockDetailView
 
 
 urlpatterns = patterns('',
@@ -14,4 +15,10 @@ urlpatterns = patterns('',
         name='dock_list',
     ),
 
+    # Docks
+    url(
+        r'^dock/(?P<pk>\d+)/$',
+        DockDetailView.as_view(),
+        name='dock_detail',
+    ),
 )

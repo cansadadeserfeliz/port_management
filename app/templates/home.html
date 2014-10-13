@@ -1,11 +1,13 @@
 {% extends "layout/base.html" %}
+{% load static %}
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
     <div class="well">
-        <h1>Dock</h1>
+        <h1>Port</h1>
         <p>
+            <img class="home-img" src="{% static 'img/logo.png' %}">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Sed quis leo sheet lectus facilisis suscipit. Mauris et nunc ullamcorper.
             Vestibule tempus rutrum ligule, at pellentesque Arcu.
@@ -20,7 +22,7 @@
             Vestibule feugiat, leo et consequat dignissim, risus purus NISL facilisis vitae gravida lacus dui Finibus mi.
         </p>
     {% if user.is_authenticated %}
-        <p><a href="{% url 'port:dock_list' %}" class="btn btn-warning btn-lg" role="button">List of ports &raquo;</a></p>
+        <p><a href="{% url 'port:dock_list' %}" class="btn btn-primary btn-lg" role="button">List of docks &raquo;</a></p>
     {% else %}
         <p>Please, log in to make an order</p>
     {% endif %}

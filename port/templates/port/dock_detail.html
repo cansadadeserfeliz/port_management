@@ -1,0 +1,43 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Dock{% endblock %}
+
+{% block content %}
+    <h1>Dock: {{ dock.name }}</h1>
+    <div>
+        <b>Employees:</b>
+        {% for employee in dock.employees.all %}
+            {{ employee }}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ship</th>
+                <th>Dangerous goods</th>
+                <th>Entered the dock</th>
+                <th>Left the dock</th>
+            </tr>
+        </thead>
+            <tbody>
+            {% for ship_in_dock in dock.ships.all %}
+                <tr>
+                    <td>{{ ship_in_dock.ship }}</td>
+                    <td>
+                        {{ ship_in_dock.ship.has_dangerous_goods|yesno:'<span class="glyphicon glyphicon-warning-sign"></span>,N/A'|safe }}
+                    </td>
+                    <td>
+                        {{ ship_in_dock.created_at }}
+                    </td>
+                    <td>
+                    {% if ship_in_dock.is_active %}
+                        Is still in the dock
+                    {% else %}
+                        {{  ship_in_dock.updated_at }}
+                    {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

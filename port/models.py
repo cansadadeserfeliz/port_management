@@ -81,6 +81,7 @@ class Dock(models.Model):
 class ShipInDock(models.Model):
     ship = models.ForeignKey(
         'port.Ship',
+        related_name='ships',
     )
 
     dock = models.ForeignKey(
@@ -89,11 +90,17 @@ class ShipInDock(models.Model):
     )
 
     is_active = models.BooleanField(
+        verbose_name=u'ship is in the dock',
         default=True,
     )
 
     created_at = models.DateTimeField(
         default=timezone.now,
+    )
+
+    updated_at = models.DateTimeField(
+        default=timezone.now,
+        auto_now=True,
     )
 
     def clean(self):
@@ -102,7 +109,16 @@ class ShipInDock(models.Model):
                     dock=self.dock,
                     is_active=True
             ).exclude(id=self.id):
-                raise ValidationError('A dock can contain only one ship at a time.')
+                raise ValidationError(u'A dock can contain only one ship at a time.')
+        if self.ship and self.dock and self.is_active:
+            if ShipInDock.objects.filter(
+                    ship=self.ship,
+                    is_active=True
+            ).exclude(id=self.id):
+                raise ValidationError(u'This ship is in another dock at this moment.')
 
     def __unicode__(self):
         return u'{0} in {1}'.format(self.ship.name, self.dock.name)
+
+    class Meta:
+        ordering = ('-updated_at',)

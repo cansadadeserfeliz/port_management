@@ -17,7 +17,7 @@
             <tbody>
             {% for dock in docks %}
                 <tr>
-                    <td>{{ dock.name }}</td>
+                    <td><a href="{% url 'port:dock_detail' dock.id %}">{{ dock.name }}</a></td>
                 {% with dock.get_current_ship as ship_in_dock %}
                     <td>
                     {% if ship_in_dock %}

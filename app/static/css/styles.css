@@ -1,3 +1,9 @@
 .logo {
     height: 25px;
 }
+
+.home-img {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}

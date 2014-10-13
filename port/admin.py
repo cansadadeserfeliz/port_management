@@ -45,6 +45,8 @@ class ShipInDockAdmin(admin.ModelAdmin):
         'ship',
         'dock',
         'is_active',
+        'created_at',
+        'updated_at',
     )
 
     raw_id_fields = ('ship', 'dock',)
@@ -55,6 +57,25 @@ class ShipInDockAdmin(admin.ModelAdmin):
 
     list_filter = ('is_active',)
 
-    exclude = ('created_at',)
+    exclude = ('created_at', 'updated_at',)
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        if obj and not obj.is_active:
+            return False
+        return True
+
+    def get_actions(self, request):
+        actions = super(ShipInDockAdmin, self).get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+
+    def get_readonly_fields(self, request, obj=None):
+        if not obj:
+            return ['is_active']
+        return ['ship', 'dock']
 
 admin.site.register(ShipInDock, ShipInDockAdmin)

@@ -25,6 +25,6 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         messages.success(
             self.request,
-            u'Your contact information was updated successfully',
+            u'Your profile was updated successfully',
         )
         return super(UserUpdateView, self).form_valid(form)

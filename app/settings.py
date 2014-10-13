@@ -1,5 +1,5 @@
 """
-Django settings for a Burger Shop project.
+Django settings for a Port Management System project.
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

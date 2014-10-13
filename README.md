@@ -56,3 +56,5 @@ Screenshots
 ![Screenshot: Settings](http://vero4ka.info/images/docs/port101.png)
 
 ![Screenshot: Admin](http://vero4ka.info/images/docs/port105.png)
+
+![Screenshot: DB](http://vero4ka.info/images/docs/port107.png)

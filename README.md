@@ -47,14 +47,14 @@ Run server:
 Screenshots
 -----------
 
-![Screenshot: Home](http://vero4ka.info/images/docs/port102.png)
+![Screenshot: Home](http://vero4ka.info/static/images/docs/port102.png)
 
-![Screenshot: List od docks](http://vero4ka.info/images/docs/port103.png)
+![Screenshot: List od docks](http://vero4ka.info/static/images/docs/port103.png)
 
-![Screenshot: Dock detail](http://vero4ka.info/images/docs/port104.png)
+![Screenshot: Dock detail](http://vero4ka.info/static/images/docs/port104.png)
 
-![Screenshot: Settings](http://vero4ka.info/images/docs/port101.png)
+![Screenshot: Settings](http://vero4ka.info/static/images/docs/port101.png)
 
-![Screenshot: Admin](http://vero4ka.info/images/docs/port105.png)
+![Screenshot: Admin](http://vero4ka.info/static/images/docs/port105.png)
 
-![Screenshot: DB](http://vero4ka.info/images/docs/port107.png)
+![Screenshot: DB](http://vero4ka.info/static/images/docs/port107.png)
